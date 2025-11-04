@@ -1,4 +1,4 @@
-package auth.security;
+package org.bayerl.auth.security;
 
 import io.quarkus.elytron.security.common.BcryptUtil;
 import jakarta.enterprise.context.ApplicationScoped;

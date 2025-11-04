@@ -1,9 +1,10 @@
-package auth.services;
+package org.bayerl.auth.services;
 
-import auth.dto.request.RegisterUserRequest;
-import auth.models.User;
-import auth.repository.UserRepository;
-import auth.security.PasswordEncrypter;
+import org.bayerl.auth.dto.request.RegisterUserRequest;
+import org.bayerl.auth.exceptions.EmailTakenException;
+import org.bayerl.auth.models.User;
+import org.bayerl.auth.repository.UserRepository;
+import org.bayerl.auth.security.PasswordEncrypter;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.PersistenceException;
@@ -18,7 +19,7 @@ public class UserService {
   PasswordEncrypter passwordEncrypter;
   
   @Transactional
-  public void registerUser(RegisterUserRequest input) throws IllegalArgumentException {
+  public void registerUser(RegisterUserRequest input) throws EmailTakenException {
     User user = new User();
     user.setEmail(input.email());
     user.setName(input.name());
@@ -26,7 +27,7 @@ public class UserService {
     try {
       repository.persistAndFlush(user);
     } catch(PersistenceException e){
-      throw new IllegalArgumentException("Error registering user: " + e.getMessage());
+      throw new EmailTakenException();
     }
   }
 

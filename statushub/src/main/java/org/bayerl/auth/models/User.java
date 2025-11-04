@@ -1,4 +1,4 @@
-package auth.models;
+package org.bayerl.auth.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

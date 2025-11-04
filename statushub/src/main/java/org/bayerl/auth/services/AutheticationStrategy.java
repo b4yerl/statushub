@@ -1,6 +1,6 @@
-package auth.services;
+package org.bayerl.auth.services;
 
-import auth.dto.request.LoginRequest;
+import org.bayerl.auth.dto.request.LoginRequest;
 
 public interface AutheticationStrategy {
   public boolean authenticate(LoginRequest input);

@@ -1,11 +1,11 @@
-package auth.services;
+package org.bayerl.auth.services;
 
 import org.jboss.logging.Logger;
 
-import auth.dto.request.LoginRequest;
-import auth.models.User;
-import auth.repository.UserRepository;
-import auth.security.PasswordEncrypter;
+import org.bayerl.auth.dto.request.LoginRequest;
+import org.bayerl.auth.models.User;
+import org.bayerl.auth.repository.UserRepository;
+import org.bayerl.auth.security.PasswordEncrypter;
 import io.quarkus.arc.log.LoggerName;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
@@ -18,7 +18,7 @@ public class JwtAuthImplementation implements AutheticationStrategy {
   @Inject
   PasswordEncrypter passwordEncrypter;
 
-  @LoggerName("auth-jwt-implementation")
+  @LoggerName("org.bayerl.auth-jwt-implementation")
   Logger logger;
   
   @Override

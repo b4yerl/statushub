@@ -1,7 +1,7 @@
-package auth.resources;
+package org.bayerl.auth.resources;
 
-import auth.dto.request.RegisterUserRequest;
-import auth.services.UserService;
+import org.bayerl.auth.dto.request.RegisterUserRequest;
+import org.bayerl.auth.services.UserService;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
@@ -21,11 +21,7 @@ public class UserResource {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response register(@Valid RegisterUserRequest input) {
-    try {
-      service.registerUser(input);
-      return Response.status(Response.Status.CREATED).build();
-    } catch(IllegalArgumentException e) {
-      return Response.status(Response.Status.BAD_REQUEST).entity("Email already used").build();
-    }
+    service.registerUser(input);
+    return Response.status(Response.Status.CREATED).build();
   }
 }

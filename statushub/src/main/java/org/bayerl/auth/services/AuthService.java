@@ -1,12 +1,13 @@
-package auth.services;
+package org.bayerl.auth.services;
 
+import org.bayerl.auth.exceptions.InvalidCredentialsException;
 import org.jboss.logging.Logger;
 
-import auth.dto.request.LoginRequest;
-import auth.dto.response.LoginResponse;
-import auth.repository.UserRepository;
-import auth.security.JwtTokenGenerator;
-import auth.security.PasswordEncrypter;
+import org.bayerl.auth.dto.request.LoginRequest;
+import org.bayerl.auth.dto.response.LoginResponse;
+import org.bayerl.auth.repository.UserRepository;
+import org.bayerl.auth.security.JwtTokenGenerator;
+import org.bayerl.auth.security.PasswordEncrypter;
 import io.quarkus.arc.log.LoggerName;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Any;
@@ -19,7 +20,7 @@ public class AuthService {
   @Inject
   UserRepository repository;
 
-  @LoggerName("auth-resource")
+  @LoggerName("org.bayerl.auth-resource")
   Logger logger;
 
   @Inject
@@ -32,11 +33,11 @@ public class AuthService {
   @Inject
   JwtTokenGenerator jwtTokenGenerator;
   
-  public LoginResponse authenticate(LoginRequest input) throws IllegalArgumentException {
+  public LoginResponse authenticate(LoginRequest input) throws InvalidCredentialsException {
     AutheticationStrategy strategy = selectStrategyImpl();
     if(!strategy.authenticate(input)) {
       logger.info("Authentication failed for user: " + input.email());
-      throw new IllegalArgumentException("Invalid credentials");
+      throw new InvalidCredentialsException();
     }
     return new LoginResponse(jwtTokenGenerator.generateToken(input.email()));
   }
