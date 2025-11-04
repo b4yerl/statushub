@@ -1,6 +1,6 @@
-package auth.repository;
+package org.bayerl.auth.repository;
 
-import auth.models.User;
+import org.bayerl.auth.models.User;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 

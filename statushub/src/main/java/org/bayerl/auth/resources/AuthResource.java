@@ -1,10 +1,10 @@
-package auth.resources;
+package org.bayerl.auth.resources;
 
 import org.jboss.logging.Logger;
 
-import auth.dto.request.LoginRequest;
-import auth.dto.response.LoginResponse;
-import auth.services.AuthService;
+import org.bayerl.auth.dto.request.LoginRequest;
+import org.bayerl.auth.dto.response.LoginResponse;
+import org.bayerl.auth.services.AuthService;
 import io.quarkus.arc.log.LoggerName;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
@@ -29,11 +29,7 @@ public class AuthResource {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response login(@Valid LoginRequest input) {
-    try {
-      LoginResponse responsePayload = service.authenticate(input);
-      return Response.ok(responsePayload).build();
-    } catch (IllegalArgumentException e) {
-      return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
-    }
+    LoginResponse responsePayload = service.authenticate(input);
+    return Response.ok(responsePayload).build();
   }
 }

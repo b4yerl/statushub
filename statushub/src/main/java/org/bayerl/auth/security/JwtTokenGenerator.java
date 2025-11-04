@@ -1,4 +1,4 @@
-package auth.security;
+package org.bayerl.auth.security;
 
 import io.smallrye.jwt.build.Jwt;
 import jakarta.enterprise.context.ApplicationScoped;
